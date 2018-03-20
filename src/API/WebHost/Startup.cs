@@ -26,7 +26,7 @@ namespace BeaverTail.API
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
-            services.AddSingleton(new EmbeddableDocumentStore
+            services.AddSingleton<IDocumentStore>(new EmbeddableDocumentStore
             {
                 DataDirectory = "Data",
                 UseEmbeddedHttpServer = true

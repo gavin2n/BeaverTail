@@ -19,15 +19,20 @@ namespace BeaverTail.API.DAL
         {
             using (var session = _store.OpenAsyncSession())
             {
-                return await session.LoadAsync<FooConfig>(Id);
+                var foo = await session.LoadAsync<FooConfig>(Id);
+                return foo;
             }
         }
 
-        public async Task StoreFoo(FooConfig foo)
+        public async Task<string> StoreFoo(FooConfig foo)
         {
             using (var session = _store.OpenAsyncSession())
             {
                 await session.StoreAsync(foo);
+
+                await session.SaveChangesAsync();
+
+                return foo.Id;
             }
         }
 

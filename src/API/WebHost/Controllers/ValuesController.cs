@@ -26,14 +26,14 @@ namespace BeaverTail.API.Controllers
         [HttpGet("{id}")]
         public async Task<FooConfig> GetAsync(string id)
         {
-            return await _configurationRepository.GetFoo(id);
+            return await _configurationRepository.GetFoo("FooConfigs/" + id);
         }
 
         // POST api/values
         [HttpPost]
-        public async Task Post([FromBody]string value)
+        public async Task<string> Post([FromBody]string value)
         {
-            await _configurationRepository.StoreFoo(new FooConfig
+           return  await _configurationRepository.StoreFoo(new FooConfig
             {
                 Foo = value
             });
