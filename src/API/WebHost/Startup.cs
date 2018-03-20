@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Raven.Client;
 using Raven.Client.Embedded;
+using Raven.Database.Server;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace BeaverTail.API
@@ -26,11 +27,17 @@ namespace BeaverTail.API
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
-            services.AddSingleton<IDocumentStore>(new EmbeddableDocumentStore
+
+            services.AddSingleton(provider =>
             {
-                DataDirectory = "Data",
-                UseEmbeddedHttpServer = true
-            }.Initialize());
+                NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8080);
+                return new EmbeddableDocumentStore
+                {
+                    DataDirectory = "Data",
+                    UseEmbeddedHttpServer = true
+                }.Initialize();
+            });
+        
 
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         }
