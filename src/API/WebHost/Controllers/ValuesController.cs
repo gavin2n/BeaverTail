@@ -35,7 +35,8 @@ namespace BeaverTail.API.Controllers
         {
            return  await _configurationRepository.StoreFoo(new FooConfig
             {
-                Foo = value
+                Foo = value,
+                Bar = value
             });
         }
 
