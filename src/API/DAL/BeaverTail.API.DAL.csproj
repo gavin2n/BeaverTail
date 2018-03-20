@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <AssemblyName>BeaverTail.API.DAL</AssemblyName>
+    <RootNamespace>BeaverTail.API.DAL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RavenDB.Database" Version="3.5.5" />
+  </ItemGroup>
+
+</Project>

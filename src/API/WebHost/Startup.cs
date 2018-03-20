@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BeaverTail.API.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Raven.Client;
+using Raven.Client.Embedded;
+using Swashbuckle.AspNetCore.Swagger;
 
-namespace WebHost
+namespace BeaverTail.API
 {
     public class Startup
     {
@@ -24,6 +22,17 @@ namespace WebHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+            services.AddSingleton(new EmbeddableDocumentStore
+            {
+                DataDirectory = "Data",
+                UseEmbeddedHttpServer = true
+            }.Initialize());
+
+            services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +44,13 @@ namespace WebHost
             }
 
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
         }
     }
 }
