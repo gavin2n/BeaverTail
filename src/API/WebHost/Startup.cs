@@ -1,4 +1,5 @@
-﻿using BeaverTail.API.DAL;
+﻿using BeaverTail.API.BLL;
+using BeaverTail.API.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +41,7 @@ namespace BeaverTail.API
         
 
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
+            services.AddScoped<ILogConfigurationProvider, LogConfigurationProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

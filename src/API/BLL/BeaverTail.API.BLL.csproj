@@ -5,4 +5,8 @@
     <AssemblyName>BeaverTail.API.BLL</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\BeaverTail.API.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

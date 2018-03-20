@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BeaverTail.API.BLL.csproj" />
     <ProjectReference Include="..\DAL\BeaverTail.API.DAL.csproj" />
   </ItemGroup>
 

@@ -24,6 +24,35 @@ namespace BeaverTail.API.DAL
             }
         }
 
+        public async Task<LogConfigData> GetLogConfiguration(string Id)
+        {
+            using (var session = _store.OpenAsyncSession())
+            {
+                var config = await session.LoadAsync<LogConfigData>(Id);
+                return config;
+            }
+        }
+        public async Task<string> StoreLogConfiguration(LogConfigData logConfig)
+        {
+            using (var session = _store.OpenAsyncSession())
+            {
+                await session.StoreAsync(logConfig);
+
+                await session.SaveChangesAsync();
+
+                return logConfig.Id;
+            }
+        }
+
+        public  List<LogConfigData> GetLogConfigurations()
+        {
+            using (var session = _store.OpenSession())
+            {
+                var config = session.Query<LogConfigData>();
+                return config.ToList();
+            }
+        }
+
         public async Task<string> StoreFoo(FooConfig foo)
         {
             using (var session = _store.OpenAsyncSession())
