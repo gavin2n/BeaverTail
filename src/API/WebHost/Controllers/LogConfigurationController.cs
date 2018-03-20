@@ -5,12 +5,14 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 
 namespace BeaverTail.API.Controllers
 {
-    [Route("api/logconfiguartion")]
+    [Route("api/logconfiguration")]
     public class LogConfigurationController : Controller
     {
+        [Route(""), HttpGet]
         public object Get()
         {
             
