@@ -14,5 +14,7 @@ namespace BeaverTail.API.DAL
         Task<string> StoreLogConfiguration(LogConfigData logConfig);
 
         List<LogConfigData> GetLogConfigurations();
+
+        List<string> GetServerListFromConfig();
     }
 }

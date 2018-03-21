@@ -53,6 +53,11 @@ namespace BeaverTail.API.DAL
             }
         }
 
+        public List<string> GetServerListFromConfig()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<string> StoreFoo(FooConfig foo)
         {
             using (var session = _store.OpenAsyncSession())
