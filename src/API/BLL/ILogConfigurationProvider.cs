@@ -12,6 +12,6 @@ namespace BeaverTail.API.BLL
 
         Task<LogConfiguration> GetLogConfiguartionById(string Id);
 
-        List<LogConfiguration> GetLogConfigurations();
+        List<LogConfigurationOverview> GetLogConfigurations();
     }
 }

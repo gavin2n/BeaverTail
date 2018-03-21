@@ -43,15 +43,14 @@ namespace BeaverTail.API.BLL
             };
         }
 
-        public  List<LogConfiguration> GetLogConfigurations()
+        public  List<LogConfigurationOverview> GetLogConfigurations()
         {
             
             var result =  _configurationRepository.GetLogConfigurations();
-            return result.Select(x => new LogConfiguration()
+            return result.Select(x => new LogConfigurationOverview()
             {
-                ApplicationName = x.Id,
-                ServerList = x.ServerList,
-                RelativeLogPaths = x.RelativeLogPaths
+                ApplicationName = x.Id
+         
             }).ToList();
         }
     }
