@@ -18,11 +18,13 @@ namespace BeaverTail.API.Controllers
             _logConfigurationProvider = logConfigurationProvider;
         }
 
+        [ResponseCache(Duration = 10)]
         [Route(""), HttpGet]
         public IActionResult GetAll()
         {
 
             var result = _logConfigurationProvider.GetLogConfigurations();
+        
             return Ok(result);
         }
 

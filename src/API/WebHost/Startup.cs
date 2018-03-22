@@ -1,5 +1,6 @@
 ﻿using BeaverTail.API.BLL;
 using BeaverTail.API.DAL;
+using BeaverTail.API.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace BeaverTail.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddResponseCaching();
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
@@ -51,7 +53,8 @@ namespace BeaverTail.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseETagger();
+            app.UseResponseCaching();
             app.UseMvc();
 
             app.UseSwagger();
