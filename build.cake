@@ -27,7 +27,7 @@ Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore("./Example.sln");
+    NuGetRestore("./BeaverTail.sln");
 });
 
 Task("Build")
