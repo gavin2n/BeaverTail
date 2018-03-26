@@ -5,7 +5,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var publishFolder = EnvironmentVariable("BUILD_ARTIFACTSTAGINGDIRECTORY", "publish");
+var publishFolder = EnvironmentVariable("BUILD_ARTIFACTSTAGINGDIRECTORY") ?? "publish";
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
