@@ -5,6 +5,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var publishFolder = Argument("build.artifactstagingdirectory", "publish");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -38,7 +39,14 @@ Task("Build")
     {
       // Use MSBuild
       MSBuild("./BeaverTail.sln", settings =>
-        settings.SetConfiguration(configuration));
+        settings.SetConfiguration(configuration)
+        .WithProperty("DeployOnBuild","true")
+        .WithProperty("WebPublishMethod","Package")
+        .WithProperty("PackageAsSingleFile","true")
+        .WithProperty("SkipInvalidConfigurations","true")
+        .WithProperty("PackageLocation",publishFolder)
+      );
+        
     }
     else
     {
